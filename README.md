@@ -108,11 +108,11 @@ cp .env.example .env
 
 Edite o `.env` com suas credenciais:
 ```env
-DB_HOST=localhost
-DB_NAME=seu_banco
-DB_USER=seu_usuario
-DB_PASS=sua_senha
-BASE_URL=http://localhost/faroldeluz
+DB_HOST=186.209.113.101
+DB_NAME=cemaneto_site_faroldeluz
+DB_USER=cemaneto_site_faroldeluz
+DB_PASS=sua_senha_aqui
+BASE_URL=https://faroldeluz.ong.br
 ```
 
 3. **Crie o banco de dados:**
@@ -140,8 +140,8 @@ chmod 755 assets/uploads/rajian/
 ```
 
 6. **Acesse o site:**
-- Frontend: `http://localhost/faroldeluz`
-- Admin: `http://localhost/faroldeluz/admin`
+- Frontend: `https://faroldeluz.ong.br`
+- Admin: `https://faroldeluz.ong.br/admin`
   - Usuário: `admin`
   - Senha: `admin123` (altere imediatamente!)
 

@@ -16,7 +16,7 @@ if (file_exists(__DIR__ . '/../.env')) {
 }
 
 define('BASE_PATH', dirname(__DIR__));
-define('BASE_URL', $_ENV['BASE_URL'] ?? 'http://localhost:3000');
+define('BASE_URL', $_ENV['BASE_URL'] ?? 'https://faroldeluz.ong.br');
 define('SITE_NAME', $_ENV['SITE_NAME'] ?? 'Farol de Luz');
 define('SITE_SLOGAN', $_ENV['SITE_SLOGAN'] ?? 'A Luz do Consolador para os dias de hoje!');
 

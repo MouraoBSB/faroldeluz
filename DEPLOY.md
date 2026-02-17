@@ -88,8 +88,8 @@ Após fazer upload, edite o arquivo `.env` no servidor com as credenciais corret
 ```env
 DB_HOST=localhost
 DB_NAME=cemaneto_site_faroldeluz
-DB_USER=cemaneto_user_farol
-DB_PASS=[SENHA_DO_BANCO_PRODUCAO]
+DB_USER=cemaneto_site_faroldeluz
+DB_PASS=EDM7avc8cax!gfw*qjp
 
 BASE_URL=https://faroldeluz.ong.br
 
