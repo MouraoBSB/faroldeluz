@@ -1,0 +1,46 @@
+# Arquivos de ambiente
+.env
+.env.local
+.env.production
+
+# Credenciais e configurações sensíveis
+.ftpconfig
+*.coreftp
+deploy.bat
+
+# Uploads e arquivos gerados
+assets/uploads/*
+!assets/uploads/.gitkeep
+
+# Logs
+*.log
+*.tmp
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs e editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Node modules (se houver)
+node_modules/
+
+# Composer (se houver)
+vendor/
+
+# Material de apoio
+Material de apoio/
+
+# Cache
+.cache/
+*.cache
+
+# Backup
+*.bak
+*.backup
+*~
