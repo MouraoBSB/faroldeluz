@@ -113,7 +113,7 @@ require_once BASE_PATH . '/views/admin/layout/header.php';
     </div>
 </div>
 
-<script src="https://cdn.tiny.cloud/1/2j407pazahvrhykfnuua7altaxeztkz9v6x5sx1zp2ocll7a/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js"></script>
 <script>
 tinymce.init({
     selector: '#editor',

@@ -49,6 +49,9 @@ require_once BASE_PATH . '/views/admin/layout/header.php';
                     <button type="button" onclick="switchTab('contato')" class="tab-button px-6 py-3 font-semibold rounded-t-lg transition" data-tab="contato">
                         Contato
                     </button>
+                    <button type="button" onclick="switchTab('geral')" class="tab-button px-6 py-3 font-semibold rounded-t-lg transition" data-tab="geral">
+                        Configurações Gerais
+                    </button>
                 </nav>
             </div>
             
@@ -64,6 +67,7 @@ require_once BASE_PATH . '/views/admin/layout/header.php';
                 <input type="hidden" name="blog_texto_adicional" id="blog_texto_adicional_input">
                 <input type="hidden" name="sobre_texto" id="sobre_texto_input">
                 <input type="hidden" name="batuira_texto" id="batuira_texto_input">
+                <input type="hidden" name="site_meta_description" id="site_meta_description_input">
                 
                 <div class="settings-section bg-azul-cosmico rounded-lg border border-azul-medio p-8" data-section="revista">
                     <h2 class="text-2xl font-bold text-dourado-luz mb-6">Página da Revista</h2>
@@ -357,6 +361,56 @@ require_once BASE_PATH . '/views/admin/layout/header.php';
                     </div>
                 </div>
                 
+                <!-- Seção: Configurações Gerais -->
+                <div class="settings-section bg-azul-cosmico rounded-lg border border-azul-medio p-8" data-section="geral">
+                    <h2 class="text-2xl font-bold text-dourado-luz mb-6">Configurações Gerais do Site</h2>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-dourado-luz font-semibold mb-2">Título do Site (OG Title)</label>
+                            <input type="text" name="site_og_title" value="<?= htmlspecialchars($settings['site_og_title'] ?? '') ?>"
+                                   class="w-full px-4 py-3 bg-azul-noite border border-azul-medio rounded-lg text-white focus:outline-none focus:border-dourado-luz"
+                                   placeholder="Ex: Farol de Luz - A Luz do Consolador para os dias de hoje!">
+                            <p class="text-sm text-cinza-azulado mt-2">Título que aparece quando o link do site é compartilhado em redes sociais</p>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-dourado-luz font-semibold mb-2">Descrição do Site (Meta Description)</label>
+                            <textarea id="editor-meta-description" rows="4"></textarea>
+                            <p class="text-sm text-cinza-azulado mt-2">Descrição que aparece quando o link do site é compartilhado (WhatsApp, Facebook, etc). Recomendado: 150-160 caracteres</p>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-dourado-luz font-semibold mb-2">Favicon (Ícone do Site)</label>
+                            <?php if (!empty($settings['site_favicon'])): ?>
+                                <div class="mb-3 flex items-center gap-4">
+                                    <img src="<?= base_url($settings['site_favicon']) ?>" 
+                                         alt="Favicon atual" 
+                                         class="w-16 h-16 rounded border border-azul-medio">
+                                    <span class="text-cinza-azulado">Favicon atual</span>
+                                </div>
+                            <?php endif; ?>
+                            <input type="file" name="site_favicon" accept="image/x-icon,image/png,image/svg+xml"
+                                   class="w-full px-4 py-3 bg-azul-noite border border-azul-medio rounded-lg text-white focus:outline-none focus:border-dourado-luz file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-dourado-luz file:text-azul-noite file:font-semibold hover:file:bg-dourado-intenso">
+                            <p class="text-sm text-cinza-azulado mt-2">Ícone que aparece na aba do navegador. Formatos aceitos: .ico, .png, .svg (recomendado: 32x32px ou 64x64px)</p>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-dourado-luz font-semibold mb-2">Imagem de Compartilhamento (OG Image)</label>
+                            <?php if (!empty($settings['site_og_image'])): ?>
+                                <div class="mb-3">
+                                    <img src="<?= base_url($settings['site_og_image']) ?>" 
+                                         alt="Imagem de compartilhamento atual" 
+                                         class="max-w-md rounded-lg border border-azul-medio">
+                                </div>
+                            <?php endif; ?>
+                            <input type="file" name="site_og_image" accept="image/jpeg,image/jpg,image/png,image/webp"
+                                   class="w-full px-4 py-3 bg-azul-noite border border-azul-medio rounded-lg text-white focus:outline-none focus:border-dourado-luz file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-dourado-luz file:text-azul-noite file:font-semibold hover:file:bg-dourado-intenso">
+                            <p class="text-sm text-cinza-azulado mt-2">Imagem que aparece quando o link é compartilhado em redes sociais (recomendado: 1200x630px)</p>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="flex gap-4">
                     <button type="submit" class="bg-dourado-luz hover:bg-dourado-intenso text-azul-noite px-8 py-3 rounded-lg font-semibold transition">
                         Salvar Configurações
@@ -367,7 +421,7 @@ require_once BASE_PATH . '/views/admin/layout/header.php';
     </div>
 </div>
 
-<script src="https://cdn.tiny.cloud/1/2j407pazahvrhykfnuua7altaxeztkz9v6x5sx1zp2ocll7a/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js"></script>
 <script>
 tinymce.init({
     selector: '#editor',
@@ -639,6 +693,26 @@ tinymce.init({
     }
 });
 
+tinymce.init({
+    selector: '#editor-meta-description',
+    skin: 'oxide-dark',
+    content_css: 'dark',
+    height: 200,
+    menubar: false,
+    language: 'pt_BR',
+    plugins: ['wordcount', 'charmap'],
+    toolbar: 'bold italic | removeformat',
+    content_style: 'body { font-family: Arial, sans-serif; font-size: 14px; color: #fff; background-color: #0B1020; }',
+    setup: function(editor) {
+        editor.on('init', function() {
+            var content = <?= json_encode($settings['site_meta_description'] ?? '') ?>;
+            if (content) {
+                editor.setContent(content);
+            }
+        });
+    }
+});
+
 document.getElementById('settingsForm').addEventListener('submit', function(e) {
     document.getElementById('revista_descricao_input').value = tinymce.get('editor').getContent();
     document.getElementById('revista_texto_adicional_input').value = tinymce.get('editor-rodape').getContent();
@@ -650,6 +724,7 @@ document.getElementById('settingsForm').addEventListener('submit', function(e) {
     document.getElementById('blog_texto_adicional_input').value = tinymce.get('editor-blog-rodape').getContent();
     document.getElementById('sobre_texto_input').value = tinymce.get('editor-sobre').getContent();
     document.getElementById('batuira_texto_input').value = tinymce.get('editor-batuira').getContent();
+    document.getElementById('site_meta_description_input').value = tinymce.get('editor-meta-description').getContent();
 });
 
 // Sistema de Abas

@@ -1,3 +1,11 @@
+<?php
+require_once BASE_PATH . '/models/Setting.php';
+$settingModel = new Setting();
+$siteFavicon = $settingModel->get('site_favicon');
+$siteOgTitle = $settingModel->get('site_og_title');
+$siteMetaDescription = $settingModel->get('site_meta_description');
+$siteOgImage = $settingModel->get('site_og_image');
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -6,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     <title><?= $pageTitle ?? SITE_NAME ?></title>
-    <meta name="description" content="<?= $metaDescription ?? SITE_SLOGAN ?>">
+    <meta name="description" content="<?= strip_tags($metaDescription ?? $siteMetaDescription ?? SITE_SLOGAN) ?>">
     <?php if (isset($metaKeywords)): ?>
     <meta name="keywords" content="<?= $metaKeywords ?>">
     <?php endif; ?>
@@ -15,19 +23,23 @@
     <link rel="canonical" href="<?= $canonical ?>">
     <?php endif; ?>
     
-    <meta property="og:title" content="<?= $ogTitle ?? $pageTitle ?? SITE_NAME ?>">
-    <meta property="og:description" content="<?= $ogDescription ?? $metaDescription ?? SITE_SLOGAN ?>">
-    <meta property="og:image" content="<?= $ogImage ?? asset_url('images/og-default.jpg') ?>">
+    <meta property="og:title" content="<?= $ogTitle ?? $siteOgTitle ?? $pageTitle ?? SITE_NAME ?>">
+    <meta property="og:description" content="<?= strip_tags($ogDescription ?? $siteMetaDescription ?? $metaDescription ?? SITE_SLOGAN) ?>">
+    <meta property="og:image" content="<?= $ogImage ?? ($siteOgImage ? base_url($siteOgImage) : asset_url('images/logo.png')) ?>">
     <meta property="og:url" content="<?= $ogUrl ?? base_url() ?>">
     <meta property="og:type" content="<?= $ogType ?? 'website' ?>">
     <meta property="og:site_name" content="<?= SITE_NAME ?>">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="<?= $ogTitle ?? $pageTitle ?? SITE_NAME ?>">
-    <meta name="twitter:description" content="<?= $ogDescription ?? $metaDescription ?? SITE_SLOGAN ?>">
-    <meta name="twitter:image" content="<?= $ogImage ?? asset_url('images/og-default.jpg') ?>">
+    <meta name="twitter:title" content="<?= $ogTitle ?? $siteOgTitle ?? $pageTitle ?? SITE_NAME ?>">
+    <meta name="twitter:description" content="<?= strip_tags($ogDescription ?? $siteMetaDescription ?? $metaDescription ?? SITE_SLOGAN) ?>">
+    <meta name="twitter:image" content="<?= $ogImage ?? ($siteOgImage ? base_url($siteOgImage) : asset_url('images/logo.png')) ?>">
     
-    <link rel="icon" type="image/png" href="<?= asset_url('images/favicon.png') ?>">
+    <?php if ($siteFavicon): ?>
+    <link rel="icon" href="<?= base_url($siteFavicon) ?>">
+    <?php else: ?>
+    <link rel="icon" type="image/png" href="<?= asset_url('images/logo.png') ?>">
+    <?php endif; ?>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>

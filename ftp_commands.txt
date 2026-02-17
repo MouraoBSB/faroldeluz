@@ -1,0 +1,9 @@
+open 186.209.113.101
+wind_ftp@faroldeluz.ong.br
+Fyj3P7w-Dvh6N
+binary
+cd /
+put controllers\DialogoController.php controllers/DialogoController.php
+put controllers\MagazineController.php controllers/MagazineController.php
+put debug_errors.php debug_errors.php
+bye

@@ -159,6 +159,44 @@ class AdminSettingsController extends Controller {
             }
         }
         
+        if (isset($_FILES['site_favicon']) && $_FILES['site_favicon']['error'] === UPLOAD_ERR_OK) {
+            $fileExtension = strtolower(pathinfo($_FILES['site_favicon']['name'], PATHINFO_EXTENSION));
+            $allowedExtensions = ['ico', 'png', 'svg'];
+            
+            if (in_array($fileExtension, $allowedExtensions)) {
+                $currentFavicon = $this->settingModel->get('site_favicon');
+                if ($currentFavicon && file_exists(BASE_PATH . '/' . $currentFavicon)) {
+                    unlink(BASE_PATH . '/' . $currentFavicon);
+                }
+                
+                $fileName = 'favicon_' . uniqid() . '.' . $fileExtension;
+                $filePath = $uploadDir . $fileName;
+                
+                if (move_uploaded_file($_FILES['site_favicon']['tmp_name'], $filePath)) {
+                    $this->settingModel->set('site_favicon', 'assets/uploads/settings/' . $fileName);
+                }
+            }
+        }
+        
+        if (isset($_FILES['site_og_image']) && $_FILES['site_og_image']['error'] === UPLOAD_ERR_OK) {
+            $fileExtension = strtolower(pathinfo($_FILES['site_og_image']['name'], PATHINFO_EXTENSION));
+            $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+            
+            if (in_array($fileExtension, $allowedExtensions)) {
+                $currentImage = $this->settingModel->get('site_og_image');
+                if ($currentImage && file_exists(BASE_PATH . '/' . $currentImage)) {
+                    unlink(BASE_PATH . '/' . $currentImage);
+                }
+                
+                $fileName = 'og_image_' . uniqid() . '.' . $fileExtension;
+                $filePath = $uploadDir . $fileName;
+                
+                if (move_uploaded_file($_FILES['site_og_image']['tmp_name'], $filePath)) {
+                    $this->settingModel->set('site_og_image', 'assets/uploads/settings/' . $fileName);
+                }
+            }
+        }
+        
         $settingsToUpdate = [
             'whatsapp_url',
             'whatsapp_group_url',
@@ -182,7 +220,9 @@ class AdminSettingsController extends Controller {
             'sobre_titulo',
             'sobre_texto',
             'batuira_titulo',
-            'batuira_texto'
+            'batuira_texto',
+            'site_og_title',
+            'site_meta_description'
         ];
         
         foreach ($settingsToUpdate as $key) {
@@ -192,7 +232,8 @@ class AdminSettingsController extends Controller {
                     $key !== 'dialogos_descricao' && $key !== 'dialogos_texto_adicional' &&
                     $key !== 'rajian_descricao' && $key !== 'rajian_texto_adicional' &&
                     $key !== 'blog_descricao' && $key !== 'blog_texto_adicional' &&
-                    $key !== 'sobre_texto' && $key !== 'batuira_texto') {
+                    $key !== 'sobre_texto' && $key !== 'batuira_texto' &&
+                    $key !== 'site_meta_description') {
                     $value = sanitize_input($value);
                 }
                 $this->settingModel->set($key, $value);

@@ -39,25 +39,46 @@ O **TinyMCE** é um editor WYSIWYG (What You See Is What You Get) rico em recurs
 
 ## 🚀 Instalação e Configuração
 
-### Método 1: CDN (Recomendado para produção)
+### Método Atual: CDN Público jsDelivr (Usado no Farol de Luz)
 
 ```html
-<!-- No <head> do seu HTML -->
+<!-- No final do HTML, antes de fechar </body> -->
+<script src="https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js"></script>
+```
+
+**Por que jsDelivr?**
+- ✅ **Sem necessidade de API key**
+- ✅ **Funciona em qualquer domínio**
+- ✅ **Gratuito e sem restrições**
+- ✅ **CDN rápido e confiável**
+- ✅ **Sempre atualizado**
+- ✅ **Sem bloqueios de domínio**
+
+### Método Alternativo 1: CDN Oficial TinyMCE (Requer API key)
+
+```html
+<!-- Requer registro de domínio no TinyMCE Cloud -->
 <script src="https://cdn.tiny.cloud/1/YOUR-API-KEY/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 ```
 
-### Método 2: Self-hosted (Usado no Farol de Luz)
+⚠️ **Atenção:** Este método requer:
+- Criar conta em https://www.tiny.cloud/
+- Registrar o domínio no painel
+- Usar API key específica
+- **Não recomendado** devido às restrições
+
+### Método Alternativo 2: Self-hosted
 
 ```html
 <!-- Baixe o TinyMCE e coloque em assets/js/tinymce/ -->
 <script src="<?= asset_url('js/tinymce/tinymce.min.js') ?>"></script>
 ```
 
-**Vantagens do self-hosted:**
+**Vantagens:**
 - ✅ Funciona offline
-- ✅ Sem dependência de API key
 - ✅ Controle total sobre versão
-- ✅ Melhor performance
+- ❌ Requer download manual (~10MB)
+- ❌ Precisa atualizar manualmente
 
 ---
 
@@ -1021,7 +1042,38 @@ images_upload_handler: function (blobInfo, success, failure) {
 }
 ```
 
-### Problema 3: Conteúdo não salva
+### Problema 3: Aparece botão "Upgrade" no editor
+
+**Causa:** Ao usar o CDN público (jsDelivr), o TinyMCE mostra um botão "Upgrade" como incentivo comercial para a versão premium.
+
+**Solução:**
+- ✅ **Não afeta funcionalidade** - O botão é apenas visual
+- ✅ **Não bloqueia recursos** - Todos os recursos gratuitos funcionam normalmente
+- ✅ **Pode ser ignorado** - Não impede criação ou edição de conteúdo
+
+**Se quiser ocultar o botão (opcional):**
+```css
+/* Adicionar no CSS do admin */
+.tox-promotion {
+    display: none !important;
+}
+```
+
+### Problema 4: Erro "This domain is not registered"
+
+**Causa:** Usando CDN oficial do TinyMCE sem registrar o domínio.
+
+**Solução:**
+```html
+<!-- Substituir CDN oficial por jsDelivr -->
+<!-- ❌ Antes -->
+<script src="https://cdn.tiny.cloud/1/API-KEY/tinymce/6/tinymce.min.js"></script>
+
+<!-- ✅ Depois -->
+<script src="https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js"></script>
+```
+
+### Problema 5: Conteúdo não salva
 
 **Solução:**
 ```javascript

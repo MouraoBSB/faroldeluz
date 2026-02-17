@@ -1,0 +1,7 @@
+open 186.209.113.101
+wind_ftp@faroldeluz.ong.br
+Fyj3P7w-Dvh6N
+binary
+cd /
+put run_migration_019.php run_migration_019.php
+bye
