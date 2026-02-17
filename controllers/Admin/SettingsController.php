@@ -222,7 +222,8 @@ class AdminSettingsController extends Controller {
             'batuira_titulo',
             'batuira_texto',
             'site_og_title',
-            'site_meta_description'
+            'site_meta_description',
+            'rajian_whatsapp_group_url'
         ];
         
         foreach ($settingsToUpdate as $key) {

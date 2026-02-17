@@ -41,7 +41,8 @@ class RajianController extends Controller {
             'rajian_titulo' => $this->settingModel->get('rajian_titulo'),
             'rajian_descricao' => $this->settingModel->get('rajian_descricao'),
             'rajian_imagem_destaque' => $this->settingModel->get('rajian_imagem_destaque'),
-            'rajian_texto_adicional' => $this->settingModel->get('rajian_texto_adicional')
+            'rajian_texto_adicional' => $this->settingModel->get('rajian_texto_adicional'),
+            'rajian_whatsapp_group_url' => $this->settingModel->get('rajian_whatsapp_group_url')
         ];
         
         $this->view('rajian/index', [

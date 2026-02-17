@@ -186,6 +186,14 @@ require_once BASE_PATH . '/views/admin/layout/header.php';
                             <textarea id="editor-rajian-rodape"></textarea>
                             <p class="text-sm text-cinza-azulado mt-2">Texto complementar exibido após a listagem de estudos (use formatação HTML)</p>
                         </div>
+                        
+                        <div>
+                            <label class="block text-dourado-luz font-semibold mb-2">Link do Grupo WhatsApp</label>
+                            <input type="url" name="rajian_whatsapp_group_url" value="<?= htmlspecialchars($settings['rajian_whatsapp_group_url'] ?? '') ?>"
+                                   class="w-full px-4 py-3 bg-azul-noite border border-azul-medio rounded-lg text-white focus:outline-none focus:border-dourado-luz"
+                                   placeholder="https://chat.whatsapp.com/...">
+                            <p class="text-sm text-cinza-azulado mt-2">Link do grupo de WhatsApp para estudo Rajian. Aparecerá como botão verde na página</p>
+                        </div>
                     </div>
                 </div>
                 

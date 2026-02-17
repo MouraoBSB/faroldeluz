@@ -1,0 +1,8 @@
+open 186.209.113.101
+wind_ftp@faroldeluz.ong.br
+Fyj3P7w-Dvh6N
+binary
+cd /
+put views\rajian\index.php views/rajian/index.php
+put views\layout\footer.php views/layout/footer.php
+bye

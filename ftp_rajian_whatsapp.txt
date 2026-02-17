@@ -1,0 +1,11 @@
+open 186.209.113.101
+wind_ftp@faroldeluz.ong.br
+Fyj3P7w-Dvh6N
+binary
+cd /
+put views\rajian\index.php views/rajian/index.php
+put views\admin\settings\index.php views/admin/settings/index.php
+put controllers\Admin\SettingsController.php controllers/Admin/SettingsController.php
+put run_migration_020.php run_migration_020.php
+put database\migrations\020_add_rajian_whatsapp_group.sql database/migrations/020_add_rajian_whatsapp_group.sql
+bye
