@@ -19,17 +19,11 @@ class DialogoController extends Controller {
         $search = isset($_GET['search']) ? sanitize_input($_GET['search']) : '';
         $order = isset($_GET['order']) ? sanitize_input($_GET['order']) : 'recent';
         
-        switch($order) {
-            case 'oldest':
-                $orderBy = 'published_at ASC';
-                break;
-            case 'title':
-                $orderBy = 'title ASC';
-                break;
-            default:
-                $orderBy = 'published_at DESC';
-                break;
-        }
+        $orderBy = match($order) {
+            'oldest' => 'published_at ASC',
+            'title' => 'title ASC',
+            default => 'published_at DESC'
+        };
         
         if ($search) {
             $result = $dialogoModel->searchPublished($search, $page, 12, $orderBy);
