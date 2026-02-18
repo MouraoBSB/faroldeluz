@@ -1,0 +1,9 @@
+open 186.209.113.101
+wind_ftp@faroldeluz.ong.br
+Fyj3P7w-Dvh6N
+binary
+cd /
+put config\config.php config/config.php
+put views\magazines\index.php views/magazines/index.php
+put views\magazines\show.php views/magazines/show.php
+bye

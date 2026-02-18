@@ -24,7 +24,7 @@ require_once BASE_PATH . '/views/layout/header.php';
                              class="w-full rounded-lg border-2 border-azul-medio shadow-2xl">
                         
                         <?php if ($magazine['pdf_url']): ?>
-                            <a href="<?= htmlspecialchars($magazine['pdf_url']) ?>" 
+                            <a href="<?= htmlspecialchars(convert_gdrive_to_download($magazine['pdf_url'])) ?>" 
                                target="_blank"
                                class="mt-6 w-full bg-dourado-luz hover:bg-dourado-intenso text-azul-noite px-6 py-4 rounded-lg font-bold text-center transition flex items-center justify-center gap-3 text-lg">
                                 <span class="text-2xl">📥</span> Baixar PDF

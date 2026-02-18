@@ -101,3 +101,16 @@ function generate_slug($text) {
     $text = trim($text, '-');
     return $text;
 }
+
+function convert_gdrive_to_download($url) {
+    if (empty($url)) {
+        return $url;
+    }
+    
+    if (preg_match('/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/', $url, $matches)) {
+        $fileId = $matches[1];
+        return "https://drive.google.com/uc?export=download&id={$fileId}";
+    }
+    
+    return $url;
+}

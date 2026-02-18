@@ -93,7 +93,7 @@ require_once BASE_PATH . '/views/layout/header.php';
                                 </a>
                                 
                                 <?php if ($magazine['pdf_url']): ?>
-                                    <a href="<?= htmlspecialchars($magazine['pdf_url']) ?>" 
+                                    <a href="<?= htmlspecialchars(convert_gdrive_to_download($magazine['pdf_url'])) ?>" 
                                        target="_blank"
                                        class="flex-1 bg-dourado-luz hover:bg-dourado-intenso text-azul-noite px-3 py-2 rounded-lg font-semibold transition text-center text-sm">
                                         📥 PDF
