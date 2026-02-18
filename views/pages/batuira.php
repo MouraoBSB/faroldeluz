@@ -37,7 +37,49 @@ require_once BASE_PATH . '/views/layout/header.php';
                 </div>
             </div>
         </div>
+        
+        <?php if (!empty($settings['batuira_imagem_adicional'])): ?>
+        <div class="mt-16 max-w-4xl mx-auto">
+            <div class="cursor-pointer" onclick="openLightbox('<?= base_url($settings['batuira_imagem_adicional']) ?>')">
+                <img src="<?= base_url($settings['batuira_imagem_adicional']) ?>" 
+                     alt="Imagem adicional" 
+                     class="w-full rounded-lg border border-azul-medio shadow-lg hover:shadow-2xl transition-shadow duration-300">
+            </div>
+        </div>
+        <?php endif; ?>
     </div>
 </section>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4" onclick="closeLightbox()">
+    <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white text-4xl hover:text-dourado-luz transition z-10">
+        &times;
+    </button>
+    <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[90vh] object-contain" onclick="event.stopPropagation()">
+</div>
+
+<script>
+function openLightbox(imageSrc) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    lightboxImg.src = imageSrc;
+    lightbox.classList.remove('hidden');
+    lightbox.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.add('hidden');
+    lightbox.classList.remove('flex');
+    document.body.style.overflow = 'auto';
+}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeLightbox();
+    }
+});
+</script>
 
 <?php require_once BASE_PATH . '/views/layout/footer.php'; ?>

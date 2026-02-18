@@ -3,5 +3,5 @@ wind_ftp@faroldeluz.ong.br
 Fyj3P7w-Dvh6N
 binary
 cd /
-put controllers\SitemapController.php controllers/SitemapController.php
+put .htaccess .htaccess
 bye

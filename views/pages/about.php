@@ -15,22 +15,28 @@ require_once BASE_PATH . '/views/layout/header.php';
 ?>
 
 <section class="pt-32 pb-16 min-h-screen">
-    <div class="container mx-auto px-4 max-w-4xl">
+    <div class="container mx-auto px-4">
         <h1 class="text-4xl md:text-5xl font-bold text-dourado-luz mb-12 text-center">
             <?= htmlspecialchars($settings['sobre_titulo'] ?? 'O Projeto Farol de Luz') ?>
         </h1>
         
-        <?php if (!empty($settings['sobre_imagem'])): ?>
-        <div class="mb-12">
-            <img src="<?= base_url($settings['sobre_imagem']) ?>" 
-                 alt="<?= htmlspecialchars($settings['sobre_titulo'] ?? 'O Projeto') ?>" 
-                 class="w-full rounded-xl shadow-2xl border border-azul-medio">
-        </div>
-        <?php endif; ?>
-        
-        <div class="prose prose-invert prose-lg max-w-none">
-            <div class="bg-azul-cosmico rounded-xl p-8 border border-azul-medio">
-                <?= $settings['sobre_texto'] ?? '<p class="text-cinza-azulado">Configure o conteúdo desta página em Configurações > Página Sobre.</p>' ?>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16 max-w-6xl mx-auto">
+            <?php if (!empty($settings['sobre_imagem'])): ?>
+                <div class="order-2 lg:order-1 flex items-start justify-center">
+                    <img src="<?= base_url($settings['sobre_imagem']) ?>" 
+                         alt="<?= htmlspecialchars($settings['sobre_titulo'] ?? 'O Projeto') ?>" 
+                         class="w-full max-h-[500px] object-contain rounded-lg border border-azul-medio shadow-lg">
+                </div>
+            <?php endif; ?>
+            
+            <div class="order-1 lg:order-2 flex items-center">
+                <div class="prose prose-invert prose-lg max-w-none">
+                    <?php if (!empty($settings['sobre_texto'])): ?>
+                        <?= $settings['sobre_texto'] ?>
+                    <?php else: ?>
+                        <p class="text-cinza-azulado">Configure o conteúdo desta página em Configurações > Página Sobre.</p>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>

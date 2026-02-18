@@ -304,6 +304,20 @@ require_once BASE_PATH . '/views/admin/layout/header.php';
                         </div>
                         
                         <div>
+                            <label class="block text-dourado-luz font-semibold mb-2">Imagem Adicional (abaixo do texto, com lightbox)</label>
+                            <?php if (!empty($settings['batuira_imagem_adicional'])): ?>
+                                <div class="mb-3">
+                                    <img src="<?= base_url($settings['batuira_imagem_adicional']) ?>" 
+                                         alt="Imagem adicional atual" 
+                                         class="max-w-xs rounded-lg border border-azul-medio">
+                                </div>
+                            <?php endif; ?>
+                            <input type="file" name="batuira_imagem_adicional" accept="image/jpeg,image/jpg,image/png,image/webp"
+                                   class="w-full px-4 py-3 bg-azul-noite border border-azul-medio rounded-lg text-white focus:outline-none focus:border-dourado-luz file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-dourado-luz file:text-azul-noite file:font-semibold hover:file:bg-dourado-intenso">
+                            <p class="text-sm text-cinza-azulado mt-2">Imagem que aparece abaixo do conteúdo (clicável com lightbox)</p>
+                        </div>
+                        
+                        <div>
                             <label class="block text-dourado-luz font-semibold mb-2">Texto da Página (Editor Visual)</label>
                             <textarea id="editor-batuira"></textarea>
                             <p class="text-sm text-cinza-azulado mt-2">Conteúdo principal da página com formatação HTML</p>
@@ -317,7 +331,7 @@ require_once BASE_PATH . '/views/admin/layout/header.php';
                     <div class="space-y-6">
                         <div>
                             <label class="block text-dourado-luz font-semibold mb-2">Link de Contato (WhatsApp)</label>
-                            <input type="url" name="whatsapp_url" value="<?= htmlspecialchars($settings['whatsapp_url'] ?? '') ?>"
+                            <input type="url" name="whatsapp_contact_url" value="<?= htmlspecialchars($settings['whatsapp_contact_url'] ?? '') ?>"
                                    class="w-full px-4 py-3 bg-azul-noite border border-azul-medio rounded-lg text-white focus:outline-none focus:border-dourado-luz"
                                    placeholder="https://wa.me/5511999999999">
                             <p class="text-sm text-cinza-azulado mt-2">Link direto para conversa no WhatsApp</p>

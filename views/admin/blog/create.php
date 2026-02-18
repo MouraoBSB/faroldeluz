@@ -150,8 +150,8 @@ require_once BASE_PATH . '/views/admin/layout/header.php';
                     <button type="submit" class="bg-dourado-luz hover:bg-dourado-intenso text-azul-noite px-8 py-3 rounded-lg font-semibold transition">
                         Criar Post
                     </button>
-                    <a href="<?= base_url('admin/blog') ?>" class="bg-azul-medio hover:bg-azul-medio/80 text-white px-8 py-3 rounded-lg font-semibold transition">
-                        Cancelar
+                    <a href="<?= base_url('admin/blog') ?>" class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition inline-block">
+                        ✕ Cancelar
                     </a>
                 </div>
             </form>

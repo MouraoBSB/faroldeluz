@@ -8,6 +8,12 @@ require_once BASE_PATH . '/views/admin/layout/header.php';
     
     <div class="flex-1 overflow-auto">
         <div class="p-8">
+            <div class="mb-6">
+                <a href="<?= base_url('admin/dashboard') ?>" class="text-azul-turquesa hover:text-dourado-luz transition inline-flex items-center gap-2">
+                    ← Voltar ao Dashboard
+                </a>
+            </div>
+            
             <div class="flex justify-between items-center mb-8">
                 <h1 class="text-3xl font-bold text-dourado-luz">Gerenciar Diálogos</h1>
                 <a href="<?= base_url('admin/dialogos/criar') ?>" class="bg-dourado-luz hover:bg-dourado-intenso text-azul-noite px-6 py-3 rounded-lg font-semibold transition">
@@ -93,6 +99,11 @@ require_once BASE_PATH . '/views/admin/layout/header.php';
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class="flex gap-2">
+                                            <a href="<?= base_url("dialogos/{$dialogo['slug']}") ?>" 
+                                               target="_blank"
+                                               class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition text-sm inline-flex items-center gap-1">
+                                                👁️ Visualizar
+                                            </a>
                                             <a href="<?= base_url("admin/dialogos/editar/{$dialogo['id']}") ?>" 
                                                class="bg-azul-turquesa hover:bg-azul-turquesa/80 text-white px-4 py-2 rounded transition text-sm">
                                                 Editar
@@ -101,7 +112,7 @@ require_once BASE_PATH . '/views/admin/layout/header.php';
                                                   onsubmit="return confirm('Tem certeza que deseja excluir este diálogo?')" class="inline">
                                                 <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
                                                 <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition text-sm">
-                                                    Excluir
+                                                    Deletar
                                                 </button>
                                             </form>
                                         </div>

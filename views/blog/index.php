@@ -35,16 +35,20 @@ require_once BASE_PATH . '/views/layout/header.php';
         
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16 max-w-6xl mx-auto">
             <?php if (!empty($blogSettings['blog_imagem_destaque'])): ?>
-                <div class="order-2 lg:order-1">
+                <div class="order-2 lg:order-1 flex items-start justify-center">
                     <img src="<?= base_url($blogSettings['blog_imagem_destaque']) ?>" 
                          alt="Imagem de destaque" 
-                         class="w-full h-full object-cover rounded-lg border border-azul-medio shadow-lg">
+                         class="w-full max-h-[500px] object-contain rounded-lg border border-azul-medio shadow-lg">
                 </div>
             <?php endif; ?>
             
             <div class="order-1 lg:order-2 flex items-center">
                 <div class="text-lg text-cinza-azulado leading-relaxed prose prose-invert prose-lg max-w-none">
-                    <?= $blogSettings['blog_descricao'] ?? '' ?>
+                    <?php if (!empty($blogSettings['blog_descricao'])): ?>
+                        <?= $blogSettings['blog_descricao'] ?>
+                    <?php else: ?>
+                        <p>Bem-vindo ao Blog Farol de Luz, um espaço dedicado a reflexões, estudos e compartilhamento de conhecimento espírita.</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

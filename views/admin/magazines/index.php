@@ -8,6 +8,12 @@ require_once BASE_PATH . '/views/admin/layout/header.php';
     
     <div class="flex-1 overflow-auto">
         <div class="p-8">
+            <div class="mb-6">
+                <a href="<?= base_url('admin/dashboard') ?>" class="text-azul-turquesa hover:text-dourado-luz transition inline-flex items-center gap-2">
+                    ← Voltar ao Dashboard
+                </a>
+            </div>
+            
             <div class="flex justify-between items-center mb-8">
                 <h1 class="text-3xl font-bold text-dourado-luz">Gerenciar Revistas</h1>
                 <a href="<?= base_url('admin/revistas/criar') ?>" class="bg-dourado-luz hover:bg-dourado-intenso text-azul-noite px-6 py-3 rounded-lg font-semibold transition">
@@ -91,6 +97,11 @@ require_once BASE_PATH . '/views/admin/layout/header.php';
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class="flex gap-2">
+                                            <a href="<?= base_url("revista/{$magazine['slug']}") ?>" 
+                                               target="_blank"
+                                               class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition text-sm inline-flex items-center gap-1">
+                                                👁️ Visualizar
+                                            </a>
                                             <a href="<?= base_url("admin/revistas/{$magazine['id']}/editar") ?>" 
                                                class="bg-azul-turquesa hover:bg-azul-turquesa/80 text-white px-4 py-2 rounded transition text-sm">
                                                 Editar

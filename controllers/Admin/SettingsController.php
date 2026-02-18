@@ -159,6 +159,25 @@ class AdminSettingsController extends Controller {
             }
         }
         
+        if (isset($_FILES['batuira_imagem_adicional']) && $_FILES['batuira_imagem_adicional']['error'] === UPLOAD_ERR_OK) {
+            $fileExtension = strtolower(pathinfo($_FILES['batuira_imagem_adicional']['name'], PATHINFO_EXTENSION));
+            $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+            
+            if (in_array($fileExtension, $allowedExtensions)) {
+                $currentImage = $this->settingModel->get('batuira_imagem_adicional');
+                if ($currentImage && file_exists(BASE_PATH . '/' . $currentImage)) {
+                    unlink(BASE_PATH . '/' . $currentImage);
+                }
+                
+                $fileName = 'batuira_adicional_' . uniqid() . '.' . $fileExtension;
+                $filePath = $uploadDir . $fileName;
+                
+                if (move_uploaded_file($_FILES['batuira_imagem_adicional']['tmp_name'], $filePath)) {
+                    $this->settingModel->set('batuira_imagem_adicional', 'assets/uploads/settings/' . $fileName);
+                }
+            }
+        }
+        
         if (isset($_FILES['site_favicon']) && $_FILES['site_favicon']['error'] === UPLOAD_ERR_OK) {
             $fileExtension = strtolower(pathinfo($_FILES['site_favicon']['name'], PATHINFO_EXTENSION));
             $allowedExtensions = ['ico', 'png', 'svg'];
@@ -200,6 +219,7 @@ class AdminSettingsController extends Controller {
         $settingsToUpdate = [
             'whatsapp_url',
             'whatsapp_group_url',
+            'whatsapp_contact_url',
             'whatsapp_channel_url',
             'contact_email',
             'facebook_url',

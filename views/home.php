@@ -45,8 +45,8 @@ require_once BASE_PATH . '/views/layout/header.php';
         
         <div class="max-w-4xl mx-auto bg-azul-noite rounded-2xl overflow-hidden shadow-2xl border border-azul-medio hover:border-dourado-luz transition">
             <div class="grid md:grid-cols-2 gap-8 p-8">
-                <div>
-                    <img src="<?= $latestMagazine['cover_image_url'] ?>" alt="<?= htmlspecialchars($latestMagazine['title']) ?>" class="w-full rounded-lg shadow-lg">
+                <div class="flex items-center justify-center">
+                    <img src="<?= $latestMagazine['cover_image_url'] ?>" alt="<?= htmlspecialchars($latestMagazine['title']) ?>" class="w-full max-h-[500px] object-contain rounded-lg shadow-lg">
                 </div>
                 <div class="flex flex-col justify-center">
                     <h3 class="text-2xl font-bold text-dourado-luz mb-4"><?= htmlspecialchars($latestMagazine['title']) ?></h3>

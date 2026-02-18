@@ -14,10 +14,10 @@ require_once BASE_PATH . '/views/layout/header.php';
         
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24 max-w-6xl mx-auto">
             <?php if (!empty($rajianSettings['rajian_imagem_destaque'])): ?>
-                <div class="order-2 lg:order-1">
+                <div class="order-2 lg:order-1 flex flex-col items-start">
                     <img src="<?= base_url($rajianSettings['rajian_imagem_destaque']) ?>" 
                          alt="Imagem de destaque" 
-                         class="w-full h-full object-cover rounded-lg border border-azul-medio shadow-lg mb-6">
+                         class="w-full max-h-[500px] object-contain rounded-lg border border-azul-medio shadow-lg mb-6">
                     
                     <?php if (!empty($rajianSettings['rajian_whatsapp_group_url'])): ?>
                         <a href="<?= htmlspecialchars($rajianSettings['rajian_whatsapp_group_url']) ?>" 
@@ -35,7 +35,11 @@ require_once BASE_PATH . '/views/layout/header.php';
             
             <div class="order-1 lg:order-2 flex items-center">
                 <div class="text-lg text-cinza-azulado leading-relaxed prose prose-invert prose-lg max-w-none">
-                    <?= $rajianSettings['rajian_descricao'] ?? '' ?>
+                    <?php if (!empty($rajianSettings['rajian_descricao'])): ?>
+                        <?= $rajianSettings['rajian_descricao'] ?>
+                    <?php else: ?>
+                        <p>O Grupo de Estudos Rajian é o núcleo de aprofundamento do Projeto Farol de Luz. Mais do que uma simples reunião de estudos, é uma verdadeira oficina do pensamento, onde buscamos compreender os ensinamentos espíritas com profundidade e seriedade.</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -70,7 +74,7 @@ require_once BASE_PATH . '/views/layout/header.php';
                 <?php foreach ($rajians as $rajian): ?>
                     <div class="bg-azul-cosmico rounded-lg border border-azul-medio overflow-hidden hover:border-dourado-luz transition group">
                         <a href="<?= base_url("rajian/{$rajian['slug']}") ?>">
-                            <div class="h-80 overflow-hidden relative">
+                            <div class="h-56 overflow-hidden relative">
                                 <?php if (!empty($rajian['youtube_video_id'])): ?>
                                     <img src="https://img.youtube.com/vi/<?= htmlspecialchars($rajian['youtube_video_id']) ?>/hqdefault.jpg" 
                                          alt="<?= htmlspecialchars($rajian['title']) ?>"

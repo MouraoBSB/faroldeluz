@@ -21,7 +21,7 @@ require_once BASE_PATH . '/views/layout/header.php';
                     <div class="sticky top-24">
                         <img src="<?= base_url($magazine['cover_image_url']) ?>" 
                              alt="<?= htmlspecialchars($magazine['title']) ?>"
-                             class="w-full rounded-lg border-2 border-azul-medio shadow-2xl">
+                             class="w-full max-h-[600px] object-contain rounded-lg border-2 border-azul-medio shadow-2xl mx-auto">
                         
                         <?php if ($magazine['pdf_url']): ?>
                             <a href="<?= htmlspecialchars(convert_gdrive_to_download($magazine['pdf_url'])) ?>" 

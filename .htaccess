@@ -1,16 +1,58 @@
+# Forçar HTTPS
 RewriteEngine On
 RewriteBase /
 
+# Redirecionar HTTP para HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Bloquear acesso a arquivos sensíveis de teste
+<FilesMatch "^(test_|get_gdrive_token|clear_cache|run_migration)">
+    Require all denied
+</FilesMatch>
+
+# Bloquear acesso a arquivos de configuração e logs
+<FilesMatch "\.(env|sql|log|md|txt|json|yml|yaml)$">
+    Require all denied
+</FilesMatch>
+
+# Bloquear acesso a pastas sensíveis
+<DirectoryMatch "^.*/\.(git|vscode|idea)">
+    Require all denied
+</DirectoryMatch>
+
+# Bloquear listagem de diretórios
+Options -Indexes
+
+# Proteção contra hotlinking de imagens
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^https://(www\.)?faroldeluz\.ong\.br [NC]
+RewriteRule \.(jpg|jpeg|png|gif|webp)$ - [F]
+
+# Roteamento principal
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
 
+# Security Headers
 <IfModule mod_headers.c>
+    # Prevenir MIME sniffing
     Header set X-Content-Type-Options "nosniff"
+    
+    # Prevenir clickjacking
     Header set X-Frame-Options "SAMEORIGIN"
+    
+    # XSS Protection
     Header set X-XSS-Protection "1; mode=block"
+    
+    # Referrer Policy
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Permissions Policy
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
 </IfModule>
 
+# Cache Control
 <IfModule mod_expires.c>
     ExpiresActive On
     ExpiresByType image/jpeg "access plus 1 year"

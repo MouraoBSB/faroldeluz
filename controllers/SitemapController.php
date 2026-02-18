@@ -26,55 +26,97 @@ class SitemapController extends Controller {
         $rajianStudies = $rajianModel->getPublished();
         $blogPosts = $blogModel->getPublished();
         
-        echo '<?xml version="1.0" encoding="UTF-8"?>';
-        echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+        echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
         
-        echo '<url><loc>' . base_url() . '</loc><changefreq>daily</changefreq><priority>1.0</priority></url>';
-        echo '<url><loc>' . base_url('revista') . '</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>';
-        echo '<url><loc>' . base_url('dialogos') . '</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>';
-        echo '<url><loc>' . base_url('rajian') . '</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>';
-        echo '<url><loc>' . base_url('blog') . '</loc><changefreq>daily</changefreq><priority>0.9</priority></url>';
-        echo '<url><loc>' . base_url('sobre') . '</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>';
-        echo '<url><loc>' . base_url('sobre/batuira') . '</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>';
-        echo '<url><loc>' . base_url('contato') . '</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>';
+        $today = date('Y-m-d');
+        
+        echo '  <url>' . "\n";
+        echo '    <loc>' . base_url() . '</loc>' . "\n";
+        echo '    <lastmod>' . $today . '</lastmod>' . "\n";
+        echo '    <changefreq>daily</changefreq>' . "\n";
+        echo '    <priority>1.0</priority>' . "\n";
+        echo '  </url>' . "\n";
+        
+        echo '  <url>' . "\n";
+        echo '    <loc>' . base_url('revista') . '</loc>' . "\n";
+        echo '    <changefreq>weekly</changefreq>' . "\n";
+        echo '    <priority>0.9</priority>' . "\n";
+        echo '  </url>' . "\n";
+        
+        echo '  <url>' . "\n";
+        echo '    <loc>' . base_url('dialogos') . '</loc>' . "\n";
+        echo '    <changefreq>weekly</changefreq>' . "\n";
+        echo '    <priority>0.9</priority>' . "\n";
+        echo '  </url>' . "\n";
+        
+        echo '  <url>' . "\n";
+        echo '    <loc>' . base_url('rajian') . '</loc>' . "\n";
+        echo '    <changefreq>weekly</changefreq>' . "\n";
+        echo '    <priority>0.9</priority>' . "\n";
+        echo '  </url>' . "\n";
+        
+        echo '  <url>' . "\n";
+        echo '    <loc>' . base_url('blog') . '</loc>' . "\n";
+        echo '    <changefreq>daily</changefreq>' . "\n";
+        echo '    <priority>0.9</priority>' . "\n";
+        echo '  </url>' . "\n";
+        
+        echo '  <url>' . "\n";
+        echo '    <loc>' . base_url('sobre') . '</loc>' . "\n";
+        echo '    <changefreq>monthly</changefreq>' . "\n";
+        echo '    <priority>0.7</priority>' . "\n";
+        echo '  </url>' . "\n";
+        
+        echo '  <url>' . "\n";
+        echo '    <loc>' . base_url('sobre/batuira') . '</loc>' . "\n";
+        echo '    <changefreq>monthly</changefreq>' . "\n";
+        echo '    <priority>0.7</priority>' . "\n";
+        echo '  </url>' . "\n";
+        
+        echo '  <url>' . "\n";
+        echo '    <loc>' . base_url('contato') . '</loc>' . "\n";
+        echo '    <changefreq>monthly</changefreq>' . "\n";
+        echo '    <priority>0.6</priority>' . "\n";
+        echo '  </url>' . "\n";
         
         foreach ($magazines as $magazine) {
-            echo '<url>';
-            echo '<loc>' . base_url('revista/' . $magazine['slug']) . '</loc>';
-            echo '<lastmod>' . date('Y-m-d', strtotime($magazine['updated_at'])) . '</lastmod>';
-            echo '<changefreq>monthly</changefreq>';
-            echo '<priority>0.8</priority>';
-            echo '</url>';
+            echo '  <url>' . "\n";
+            echo '    <loc>' . base_url('revista/' . $magazine['slug']) . '</loc>' . "\n";
+            echo '    <lastmod>' . date('Y-m-d', strtotime($magazine['updated_at'])) . '</lastmod>' . "\n";
+            echo '    <changefreq>monthly</changefreq>' . "\n";
+            echo '    <priority>0.8</priority>' . "\n";
+            echo '  </url>' . "\n";
         }
         
         foreach ($dialogos as $dialogo) {
-            echo '<url>';
-            echo '<loc>' . base_url('dialogos/' . $dialogo['slug']) . '</loc>';
-            echo '<lastmod>' . date('Y-m-d', strtotime($dialogo['updated_at'])) . '</lastmod>';
-            echo '<changefreq>monthly</changefreq>';
-            echo '<priority>0.8</priority>';
-            echo '</url>';
+            echo '  <url>' . "\n";
+            echo '    <loc>' . base_url('dialogos/' . $dialogo['slug']) . '</loc>' . "\n";
+            echo '    <lastmod>' . date('Y-m-d', strtotime($dialogo['updated_at'])) . '</lastmod>' . "\n";
+            echo '    <changefreq>monthly</changefreq>' . "\n";
+            echo '    <priority>0.8</priority>' . "\n";
+            echo '  </url>' . "\n";
         }
         
         foreach ($rajianStudies as $study) {
-            echo '<url>';
-            echo '<loc>' . base_url('rajian/' . $study['slug']) . '</loc>';
-            echo '<lastmod>' . date('Y-m-d', strtotime($study['updated_at'])) . '</lastmod>';
-            echo '<changefreq>monthly</changefreq>';
-            echo '<priority>0.8</priority>';
-            echo '</url>';
+            echo '  <url>' . "\n";
+            echo '    <loc>' . base_url('rajian/' . $study['slug']) . '</loc>' . "\n";
+            echo '    <lastmod>' . date('Y-m-d', strtotime($study['updated_at'])) . '</lastmod>' . "\n";
+            echo '    <changefreq>monthly</changefreq>' . "\n";
+            echo '    <priority>0.8</priority>' . "\n";
+            echo '  </url>' . "\n";
         }
         
         foreach ($blogPosts as $post) {
-            echo '<url>';
-            echo '<loc>' . base_url('blog/' . $post['slug']) . '</loc>';
-            echo '<lastmod>' . date('Y-m-d', strtotime($post['updated_at'])) . '</lastmod>';
-            echo '<changefreq>weekly</changefreq>';
-            echo '<priority>0.7</priority>';
-            echo '</url>';
+            echo '  <url>' . "\n";
+            echo '    <loc>' . base_url('blog/' . $post['slug']) . '</loc>' . "\n";
+            echo '    <lastmod>' . date('Y-m-d', strtotime($post['updated_at'])) . '</lastmod>' . "\n";
+            echo '    <changefreq>weekly</changefreq>' . "\n";
+            echo '    <priority>0.7</priority>' . "\n";
+            echo '  </url>' . "\n";
         }
         
-        echo '</urlset>';
+        echo '</urlset>' . "\n";
         exit;
     }
 }

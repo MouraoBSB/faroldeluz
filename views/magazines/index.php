@@ -14,16 +14,20 @@ require_once BASE_PATH . '/views/layout/header.php';
         
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16 max-w-6xl mx-auto">
             <?php if (!empty($magazineSettings['revista_imagem_destaque'])): ?>
-                <div class="order-2 lg:order-1">
+                <div class="order-2 lg:order-1 flex items-start justify-center">
                     <img src="<?= base_url($magazineSettings['revista_imagem_destaque']) ?>" 
                          alt="Imagem de destaque da revista" 
-                         class="w-full h-full object-cover rounded-lg border border-azul-medio shadow-lg">
+                         class="w-full max-h-[500px] object-contain rounded-lg border border-azul-medio shadow-lg">
                 </div>
             <?php endif; ?>
             
             <div class="order-1 lg:order-2 flex items-center">
                 <div class="text-lg text-cinza-azulado leading-relaxed prose prose-invert prose-lg max-w-none">
-                    <?= $magazineSettings['revista_descricao'] ?? '' ?>
+                    <?php if (!empty($magazineSettings['revista_descricao'])): ?>
+                        <?= $magazineSettings['revista_descricao'] ?>
+                    <?php else: ?>
+                        <p>A Revista Espírita Farol de Luz é o braço editorial do nosso projeto, funcionando como uma oficina onde o conhecimento é trabalhado com profundidade, carinho e fidelidade doutrinárias.</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -63,10 +67,10 @@ require_once BASE_PATH . '/views/layout/header.php';
                 <?php foreach ($magazines as $magazine): ?>
                     <div class="bg-azul-cosmico rounded-lg border border-azul-medio overflow-hidden hover:border-dourado-luz transition group">
                         <?php if ($magazine['cover_image_url']): ?>
-                            <div class="h-80 overflow-hidden">
+                            <div class="h-96 overflow-hidden bg-azul-medio/30 flex items-center justify-center">
                                 <img src="<?= base_url($magazine['cover_image_url']) ?>" 
                                      alt="<?= htmlspecialchars($magazine['title']) ?>"
-                                     class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                                     class="w-full h-full object-contain group-hover:scale-105 transition duration-300"
                                      loading="lazy">
                             </div>
                         <?php endif; ?>
