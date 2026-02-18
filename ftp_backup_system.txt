@@ -1,0 +1,14 @@
+open 186.209.113.101
+wind_ftp@faroldeluz.ong.br
+Fyj3P7w-Dvh6N
+binary
+cd /
+put views\admin\settings\index.php views/admin/settings/index.php
+put controllers\Admin\SettingsController.php controllers/Admin/SettingsController.php
+put lib\Mailer.php lib/Mailer.php
+put backup\backup_database.php backup/backup_database.php
+put backup\backup_files.php backup/backup_files.php
+put backup\send_to_drive.php backup/send_to_drive.php
+put backup\weekly_report.php backup/weekly_report.php
+put docs\BACKUP_SYSTEM.md docs/BACKUP_SYSTEM.md
+bye

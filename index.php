@@ -89,6 +89,8 @@ $router->post('/admin/taxonomias/{id}/deletar', 'Admin/TaxonomyController@delete
 $router->get('/admin/configuracoes', 'Admin/SettingsController@index');
 $router->post('/admin/configuracoes', 'Admin/SettingsController@update');
 
+$router->post('/admin/test-email', 'Admin/TestEmailController@send');
+
 $router->post('/admin/upload-image', 'Admin/UploadController@uploadImage');
 
 $router->get('/sitemap.xml', 'SitemapController@index');

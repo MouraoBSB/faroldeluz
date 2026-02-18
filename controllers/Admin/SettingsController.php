@@ -223,7 +223,27 @@ class AdminSettingsController extends Controller {
             'batuira_texto',
             'site_og_title',
             'site_meta_description',
-            'rajian_whatsapp_group_url'
+            'rajian_whatsapp_group_url',
+            'smtp_host',
+            'smtp_port',
+            'smtp_user',
+            'smtp_password',
+            'smtp_encryption',
+            'smtp_from_name',
+            'smtp_from_email',
+            'backup_enabled',
+            'backup_time',
+            'backup_retention_days',
+            'backup_files_enabled',
+            'backup_files_frequency',
+            'backup_gdrive_enabled',
+            'backup_gdrive_client_id',
+            'backup_gdrive_client_secret',
+            'backup_gdrive_refresh_token',
+            'backup_gdrive_folder_id',
+            'backup_notification_email',
+            'backup_weekly_report',
+            'backup_alert_on_failure'
         ];
         
         foreach ($settingsToUpdate as $key) {
@@ -234,7 +254,7 @@ class AdminSettingsController extends Controller {
                     $key !== 'rajian_descricao' && $key !== 'rajian_texto_adicional' &&
                     $key !== 'blog_descricao' && $key !== 'blog_texto_adicional' &&
                     $key !== 'sobre_texto' && $key !== 'batuira_texto' &&
-                    $key !== 'site_meta_description') {
+                    $key !== 'site_meta_description' && $key !== 'smtp_password') {
                     $value = sanitize_input($value);
                 }
                 $this->settingModel->set($key, $value);
